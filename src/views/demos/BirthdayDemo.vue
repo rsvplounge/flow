@@ -7,6 +7,7 @@ import MapEmbed from '@/components/invitation/MapEmbed.vue'
 import PhotoGallery from '@/components/invitation/PhotoGallery.vue'
 import RsvpForm from '@/components/invitation/RsvpForm.vue'
 import DemoCta from '@/components/common/DemoCta.vue'
+import MusicPlayer from '@/components/common/MusicPlayer.vue'
 
 function scrollTo(id) {
   const el = document.getElementById(id)
@@ -51,12 +52,36 @@ function scrollTo(id) {
       </button>
     </section>
 
-    <!-- Countdown -->
-    <section id="party" class="px-6 py-16">
-      <p v-reveal class="mb-8 text-center text-xs uppercase tracking-[0.3em] text-amber-600">
-        Party starts in
-      </p>
-      <div v-reveal="100"><CountdownTimer :target-date="d.date" accent-class="text-amber-600" /></div>
+    <!-- Countdown (framed panel) -->
+    <section id="party" class="bg-amber-50/60 px-6 py-20 sm:py-24">
+      <div
+        v-reveal
+        class="mx-auto max-w-xl rounded-[2rem] border border-amber-200 bg-cream/80 px-6 py-12 text-center shadow-lg shadow-amber-500/5 backdrop-blur sm:px-10"
+      >
+        <p class="text-xs uppercase tracking-[0.3em] text-amber-600">Party starts in</p>
+        <div class="mx-auto my-6 flex w-fit items-center gap-3 text-amber-500/70" aria-hidden="true">
+          <span class="h-px w-10 bg-amber-400/50" /><span class="text-sm">✿</span><span class="h-px w-10 bg-amber-400/50" />
+        </div>
+        <CountdownTimer :target-date="d.date" accent-class="text-amber-600" />
+      </div>
+    </section>
+
+    <!-- About the Birthday Star (faded photo into text) -->
+    <section class="relative">
+      <div class="relative h-[55vh] w-full overflow-hidden sm:h-[62vh]">
+        <img :src="d.about.image" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cream/40 to-cream" aria-hidden="true" />
+      </div>
+
+      <div class="relative z-10 -mt-32 px-6 pb-16 sm:-mt-40">
+        <p v-reveal class="text-center font-script text-3xl text-amber-600">turning five</p>
+        <h2 v-reveal class="mt-1 text-center font-display text-4xl font-light text-amber-700 sm:text-5xl">
+          About the Birthday Star
+        </h2>
+        <p v-reveal class="mx-auto mt-6 max-w-xl text-center leading-loose text-bark/75 sm:text-lg">
+          {{ d.about.text }}
+        </p>
+      </div>
     </section>
 
     <!-- Program -->
@@ -86,9 +111,11 @@ function scrollTo(id) {
     <DemoCta occasion="birthday" />
 
     <div class="bg-cream py-12 text-center">
-      <router-link to="/rsvp-demo" class="text-sm text-amber-600 underline-offset-4 hover:underline">
-        ← Back to all demos
+      <router-link to="/" class="text-sm text-amber-600 underline-offset-4 hover:underline">
+        ← Back to home
       </router-link>
     </div>
+
+    <MusicPlayer src="birthday.mp3" />
   </main>
 </template>

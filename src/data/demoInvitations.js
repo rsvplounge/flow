@@ -1,12 +1,34 @@
 // Pekeng (mock) na detalye para sa Live Demos.
 // Isang lugar lang ang i-eedit mo kung gusto mong palitan ang sample content.
 
+// ──────────────────────────────────────────────────────────────
+// DYNAMIC na petsa para sa demos — LAGING nasa hinaharap relatibo
+// sa araw ngayon, kaya hindi nauubusan ang countdown kahit kailan
+// i-access ng kliyente ang live demo.
+// ──────────────────────────────────────────────────────────────
+function upcoming(daysAhead, hour, minute = 0) {
+  const d = new Date()
+  d.setDate(d.getDate() + daysAhead)
+  d.setHours(hour, minute, 0, 0)
+  return d
+}
+
+function formatLabel(d) {
+  const date = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+  return `${date} · ${time}`
+}
+
+const weddingDate = upcoming(180, 15) // ~6 buwan mula ngayon, 3:00 PM
+const debutDate = upcoming(95, 18) // ~3 buwan mula ngayon, 6:00 PM
+const birthdayDate = upcoming(50, 14) // ~7 linggo mula ngayon, 2:00 PM
+
 export const weddingDemo = {
   slug: 'wedding',
   couple: 'Juan & Maria',
   tagline: 'Together with their families, invite you to celebrate their wedding',
-  date: '2026-12-12T15:00:00',
-  dateLabel: 'December 12, 2026 · 3:00 PM',
+  date: weddingDate.toISOString(),
+  dateLabel: formatLabel(weddingDate),
   heroImage: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=75&auto=format&fit=crop',
   venue: {
     name: 'San Agustin Church',
@@ -57,8 +79,13 @@ export const debutDemo = {
   slug: 'debut',
   celebrant: 'Sofia Mae',
   tagline: 'You are invited to my 18th Birthday Celebration',
-  date: '2026-09-20T18:00:00',
-  dateLabel: 'September 20, 2026 · 6:00 PM',
+  date: debutDate.toISOString(),
+  dateLabel: formatLabel(debutDate),
+  heroImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=75&auto=format&fit=crop',
+  about: {
+    image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1200&q=75&auto=format&fit=crop',
+    text: "Tonight, I step into womanhood surrounded by the people who shaped me. From a shy little girl into the woman I am becoming, every moment has led to this night. Thank you for being part of my story — let's celebrate eighteen beautiful years together.",
+  },
   venue: {
     name: 'Marquis Events Place',
     address: 'BGC, Taguig City',
@@ -93,8 +120,12 @@ export const birthdayDemo = {
   slug: 'birthday',
   celebrant: "Lucas' 5th Birthday",
   tagline: "Come join the fun at Lucas' Safari Adventure!",
-  date: '2026-07-15T14:00:00',
-  dateLabel: 'July 15, 2026 · 2:00 PM',
+  date: birthdayDate.toISOString(),
+  dateLabel: formatLabel(birthdayDate),
+  about: {
+    image: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1200&q=75&auto=format&fit=crop',
+    text: "Our little explorer is turning five! Lucas loves animals, dinosaurs, and big adventures — so we're throwing the wildest safari party just for him. Come celebrate five years of giggles, muddy shoes, and the biggest heart. The wild things are waiting!",
+  },
   venue: {
     name: 'Kidzoona Play Area',
     address: 'SM Mall of Asia, Pasay City',

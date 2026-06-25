@@ -10,12 +10,12 @@ defineProps({
 </script>
 
 <template>
-  <section class="mx-auto max-w-2xl px-6">
-    <h2 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl">
+  <section class="mx-auto max-w-2xl px-6 text-center">
+    <h2 class="font-display text-4xl font-light text-sage-deep sm:text-5xl">
       {{ title }}
     </h2>
 
-    <ol class="mt-10 space-y-6">
+    <ol class="mx-auto mt-10 w-fit space-y-6 text-left">
       <li
         v-for="(item, i) in items"
         :key="i"
@@ -28,13 +28,13 @@ defineProps({
           />
           <span
             v-if="i < items.length - 1"
-            class="mt-1 h-12 w-px bg-slate-200"
+            class="mt-1 h-12 w-px bg-sage/25"
             aria-hidden="true"
           />
         </div>
         <div class="-mt-1">
-          <p class="text-sm font-semibold" :class="accentClass">{{ item.time }}</p>
-          <p class="text-lg font-medium text-slate-700">{{ item.title }}</p>
+          <p class="text-sm font-semibold uppercase tracking-wide" :class="accentClass">{{ item.time }}</p>
+          <p class="font-display text-xl text-bark">{{ item.title }}</p>
         </div>
       </li>
     </ol>

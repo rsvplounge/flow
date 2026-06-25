@@ -19,8 +19,8 @@ const services = [
     icon: 'M4.5 6h15a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16.5v-9A1.5 1.5 0 0 1 4.5 6ZM3 7.5 12 13l9-5.5',
   },
   {
-    title: 'Live RSVP Tracking',
-    desc: 'Guests confirm online; you watch your headcount update in real time.',
+    title: 'Online RSVP',
+    desc: 'Guests confirm online and all their responses are collected neatly in one place for you.',
     icon: 'M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
   },
   {
@@ -39,8 +39,8 @@ const services = [
     icon: 'M2.25 15.75l5.16-5.16a2.25 2.25 0 0 1 3.18 0L15.75 15.75M14.25 14.25l1.16-1.16a2.25 2.25 0 0 1 3.18 0l2.16 2.16M3.75 19.5h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Z',
   },
   {
-    title: 'Song Requests',
-    desc: 'Guests add their song requests right on your RSVP website, building the playlist together.',
+    title: 'Background Music',
+    desc: 'Choose a song that plays on your invitation — set to autoplay, or with a gentle tap of the play button.',
     icon: 'M9 9v8.25M9 9l10.5-3v8.25M9 17.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm10.5-1.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z',
   },
   {
@@ -106,6 +106,13 @@ const featured = [
 ]
 
 // Iba't ibang pangalan kaysa sa demo samples — para hindi malito (sample vs. totoong kliyente).
+// Placeholder na sample ng invitation cards — PALITAN ng totoong gawa ng design partner.
+const partnerSamples = [
+  'https://images.unsplash.com/photo-1633037773384-27d7ac0491e7?w=500&q=70&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1632610992723-82d7c212f6d7?w=500&q=70&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1553013983-15241ab69e57?w=500&q=70&auto=format&fit=crop',
+]
+
 const testimonials = [
   { quote: 'Our guests kept saying it was the most beautiful invitation they had ever received.', who: 'Patricia & Miguel', event: 'Wedding' },
   { quote: 'The live RSVP made planning our headcount completely effortless.', who: 'Bea G.', event: 'Debut' },
@@ -115,7 +122,7 @@ const testimonials = [
 const faqs = [
   { q: 'How long does it take?', a: `Most invitations are ready within ${business.turnaround}. Need it sooner? Rush options are available.` },
   { q: 'Can I customize the design and colors?', a: 'Absolutely — every invitation is tailored to your theme, colors, and story.' },
-  { q: 'How do my guests RSVP?', a: 'You share one link; guests RSVP online and you track every response in real time.' },
+  { q: 'How do my guests RSVP?', a: 'You share one link; guests RSVP online and all their responses are collected neatly in one place for you.' },
   { q: 'Where is my invitation hosted?', a: 'We host it for you with its own shareable link — nothing for you to set up.' },
   { q: 'How do I pay? Is there a downpayment?', a: "We'll guide you after your inquiry. A small downpayment reserves your slot." },
   { q: 'Do you offer printed invitation cards?', a: 'Yes — through our design partner. That is a separate service, priced by design and quantity. Just ask!' },
@@ -143,8 +150,9 @@ const faqs = [
         </h1>
 
         <p v-reveal="200" class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-cream/85 sm:text-lg">
-          Custom digital invitations and live RSVP websites for weddings, debuts,
+          Custom digital invitations and RSVP websites for weddings, debuts,
           and life's milestones — elegantly designed, and ready in days.
+          <span class="font-medium text-[#e8b4ae]">We craft printed invitation cards, too.</span>
         </p>
 
         <!-- Hooks: social proof + launch offer (slim single line) -->
@@ -351,11 +359,11 @@ const faqs = [
           <p class="mt-1.5 text-[0.7rem] uppercase tracking-[0.25em] text-bark/45">only a few slots left</p>
         </div>
 
-        <div class="mt-16 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-2 md:mx-auto md:grid md:max-w-3xl md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div class="mt-16 flex flex-col gap-6 md:mx-auto md:grid md:max-w-3xl md:grid-cols-2 md:gap-8">
           <article
             v-for="(tier, i) in tiers"
             :key="tier.name"
-            class="relative flex w-[82%] shrink-0 snap-center flex-col rounded-3xl border bg-cream p-8 transition sm:p-9 md:w-auto md:shrink"
+            class="relative flex w-full flex-col rounded-3xl border bg-cream p-7 transition sm:p-9 md:w-auto"
             :class="tier.recommended ? 'border-rosedust/50 shadow-lg shadow-rosedust/10' : 'border-sage/25'"
           >
             <header>
@@ -403,13 +411,12 @@ const faqs = [
             </RouterLink>
           </article>
         </div>
-        <p class="mt-4 text-center text-xs tracking-wide text-bark/40 md:hidden">swipe to compare →</p>
       </div>
     </section>
 
     <!-- ════════════ DESIGN PARTNER (separate service) ════════════ -->
     <section class="mx-auto max-w-4xl px-6 py-12 sm:py-16">
-      <div v-reveal class="rounded-3xl border border-sage/25 bg-blush/30 p-10 text-center sm:p-14">
+      <div v-reveal class="rounded-3xl border border-sage/25 bg-blush/30 p-8 text-center sm:p-14">
         <p class="font-script text-3xl text-rosedust">also available</p>
         <h2 class="mt-2 font-display text-4xl font-light tracking-tight text-sage-deep sm:text-5xl">
           Invitation Design &amp; Printed Cards
@@ -420,7 +427,25 @@ const faqs = [
           invitation artwork crafted into beautiful, print-ready physical cards.
           This is a separate service, priced by design and quantity.
         </p>
-        <div class="mt-7 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-bark/70">
+
+        <!-- Sample invitation cards (picture-first para agad maintindihan) -->
+        <div class="mx-auto mt-8 grid max-w-2xl grid-cols-3 gap-3 sm:gap-4">
+          <div
+            v-for="(img, i) in partnerSamples"
+            :key="i"
+            v-reveal="i * 80"
+            class="overflow-hidden rounded-2xl border border-sage/20 bg-cream shadow-sm"
+          >
+            <img
+              :src="img"
+              alt="Invitation card sample"
+              loading="lazy"
+              class="aspect-[3/4] h-full w-full object-cover transition duration-700 hover:scale-105"
+            />
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-bark/70">
           <span>❀ Bespoke invitation design</span>
           <span>❀ Print-ready files</span>
           <span>❀ Physical card production</span>
@@ -429,12 +454,12 @@ const faqs = [
           :href="contact.facebookUrl"
           target="_blank"
           rel="noopener"
-          class="mt-9 inline-flex items-center gap-2 rounded-full border border-sage/40 px-9 py-3.5 text-sm font-medium text-sage-deep transition hover:bg-sage hover:text-cream"
+          class="mt-9 inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-sage/40 px-6 py-3.5 text-sm font-medium text-sage-deep transition hover:bg-sage hover:text-cream sm:w-auto sm:px-9"
         >
-          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 flex-none" aria-hidden="true">
             <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07Z" />
           </svg>
-          Request a quote on Facebook
+          Request a quote
         </a>
       </div>
     </section>

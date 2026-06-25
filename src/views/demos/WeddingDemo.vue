@@ -8,6 +8,7 @@ import EntourageList from '@/components/invitation/EntourageList.vue'
 import PhotoGallery from '@/components/invitation/PhotoGallery.vue'
 import RsvpForm from '@/components/invitation/RsvpForm.vue'
 import DemoCta from '@/components/common/DemoCta.vue'
+import MusicPlayer from '@/components/common/MusicPlayer.vue'
 </script>
 
 <template>
@@ -94,5 +95,7 @@ import DemoCta from '@/components/common/DemoCta.vue'
         ← Back to home
       </router-link>
     </div>
+
+    <MusicPlayer src="wedding.mp3" />
   </main>
 </template>
