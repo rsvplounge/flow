@@ -8,6 +8,7 @@ import PhotoGallery from '@/components/invitation/PhotoGallery.vue'
 import RsvpForm from '@/components/invitation/RsvpForm.vue'
 import DemoCta from '@/components/common/DemoCta.vue'
 import MusicPlayer from '@/components/common/MusicPlayer.vue'
+import PartyBalloons from '@/components/common/PartyBalloons.vue'
 
 function scrollTo(id) {
   const el = document.getElementById(id)
@@ -18,24 +19,35 @@ function scrollTo(id) {
 <template>
   <main class="bg-cream text-bark">
     <!-- Hero (with background image) -->
-    <section class="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-6 py-28 text-center">
-      <!-- Background photo (placeholder — palitan ng totoong photo) -->
+    <section class="relative flex min-h-[85vh] items-center justify-center overflow-hidden px-6 py-28 text-center">
+      <!-- Background photo -->
       <img
-        src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1600&q=75&auto=format&fit=crop"
+        :src="d.heroImage"
         alt=""
         class="absolute inset-0 h-full w-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-amber-900/55 via-amber-800/45 to-amber-900/70" aria-hidden="true" />
+      <div class="absolute inset-0 bg-gradient-to-b from-amber-800/45 via-orange-600/30 to-rose-700/55" aria-hidden="true" />
+
+      <!-- Balloons -->
+      <PartyBalloons class="pointer-events-none absolute -left-5 top-4 h-32 w-auto animate-bob sm:left-6 sm:h-44" />
+      <PartyBalloons class="pointer-events-none absolute -right-5 top-10 h-28 w-auto -scale-x-100 animate-bob [animation-delay:0.6s] sm:right-8 sm:h-40" />
+
+      <!-- Confetti -->
+      <span class="pointer-events-none absolute left-[16%] top-[24%] h-2.5 w-2.5 animate-bob rounded-full bg-yellow-300" />
+      <span class="pointer-events-none absolute right-[20%] top-[30%] h-2 w-2 animate-bob rounded-full bg-teal-300 [animation-delay:0.4s]" />
+      <span class="pointer-events-none absolute bottom-[28%] left-[26%] h-2 w-2 rotate-45 animate-bob bg-rose-300 [animation-delay:0.8s]" />
+      <span class="pointer-events-none absolute bottom-[32%] right-[15%] h-2.5 w-2.5 animate-bob rounded-full bg-orange-300 [animation-delay:0.2s]" />
+      <span class="pointer-events-none absolute left-[11%] top-[46%] h-2 w-2 animate-bob rounded-full bg-sky-300 [animation-delay:1s]" />
 
       <div class="relative text-cream">
         <p v-reveal class="font-script text-3xl sm:text-4xl">you're invited</p>
         <h1 v-reveal="100" class="mt-3 font-display text-4xl font-light tracking-tight drop-shadow sm:text-7xl">
           {{ d.celebrant }}
         </h1>
-        <div v-reveal="200" class="mx-auto my-8 flex w-fit items-center gap-3 text-cream/80" aria-hidden="true">
-          <span class="h-px w-10 bg-cream/50" /><span class="text-xs">✿</span><span class="h-px w-10 bg-cream/50" />
+        <div v-reveal="200" class="mx-auto my-8 flex w-fit items-center gap-3 text-cream/90" aria-hidden="true">
+          <span class="h-px w-10 bg-cream/60" /><span class="text-base">🎈</span><span class="h-px w-10 bg-cream/60" />
         </div>
-        <p v-reveal="250" class="mx-auto max-w-md text-cream/90">{{ d.tagline }}</p>
+        <p v-reveal="250" class="mx-auto max-w-md text-cream/95 [text-shadow:0_1px_4px_rgb(0_0_0/0.35)]">{{ d.tagline }}</p>
         <p v-reveal="300" class="mt-4 font-display text-2xl text-cream">{{ d.dateLabel }}</p>
       </div>
 
@@ -74,7 +86,7 @@ function scrollTo(id) {
       </div>
 
       <div class="relative z-10 -mt-32 px-6 pb-16 sm:-mt-40">
-        <p v-reveal class="text-center font-script text-3xl text-amber-600">turning five</p>
+        <p v-reveal class="text-center font-script text-3xl text-amber-600">turning five 🦁</p>
         <h2 v-reveal class="mt-1 text-center font-display text-4xl font-light text-amber-700 sm:text-5xl">
           About the Birthday Star
         </h2>
@@ -86,19 +98,19 @@ function scrollTo(id) {
 
     <!-- Program -->
     <div v-reveal class="py-16">
-      <EventDetails title="Party Schedule" :items="d.program" accent-class="text-amber-600" />
+      <EventDetails title="Party Schedule 🎉" :items="d.program" accent-class="text-amber-600" />
     </div>
 
     <!-- Venue -->
-    <section class="px-6 py-16">
-      <h2 v-reveal class="mb-10 text-center font-display text-4xl font-light text-amber-700">Where's the Party?</h2>
+    <section class="bg-green-50/50 px-6 py-16">
+      <h2 v-reveal class="mb-10 text-center font-display text-4xl font-light text-amber-700">Where's the Party? 📍</h2>
       <div v-reveal="100" class="mx-auto max-w-2xl">
         <MapEmbed :query="d.venue.mapQuery" :venue-name="d.venue.name" :address="d.venue.address" />
       </div>
     </section>
 
     <!-- Gallery -->
-    <div class="py-16"><PhotoGallery :images="d.gallery" title="The Fun" /></div>
+    <div class="py-16"><PhotoGallery :images="d.gallery" title="The Fun 🎉" /></div>
 
     <!-- RSVP -->
     <section class="bg-amber-50/60 py-20">

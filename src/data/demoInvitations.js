@@ -26,7 +26,7 @@ const birthdayDate = upcoming(50, 14) // ~7 linggo mula ngayon, 2:00 PM
 export const weddingDemo = {
   slug: 'wedding',
   couple: 'Juan & Maria',
-  tagline: 'Together with their families, invite you to celebrate their wedding',
+  tagline: 'Together with our families, we invite you to our wedding celebration',
   date: weddingDate.toISOString(),
   dateLabel: formatLabel(weddingDate),
   heroImage: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=75&auto=format&fit=crop',
@@ -38,6 +38,7 @@ export const weddingDemo = {
   reception: {
     name: 'The Blue Leaf Cosmopolitan',
     address: 'Aseana Ave, Parañaque City',
+    mapQuery: 'The Blue Leaf Cosmopolitan Aseana Paranaque',
   },
   program: [
     { time: '3:00 PM', title: 'Wedding Ceremony' },
@@ -45,21 +46,42 @@ export const weddingDemo = {
     { time: '6:30 PM', title: 'Reception & Dinner' },
     { time: '8:00 PM', title: 'First Dance' },
   ],
-  entourage: [
-    {
-      role: 'Our Beloved Parents',
-      name: 'Ricardo M. Salvador †   ·   Alfonso D. Mendoza\nTeresa V. Salvador   ·   Lucia R. Mendoza',
+  dressCode: {
+    theme: 'Formal · Garden Romantic',
+    palette: [
+      { label: 'Sage Green', color: '#8c9a7d' },
+      { label: 'Blush', color: '#e7c9c2' },
+      { label: 'Champagne', color: '#e8dcc0' },
+    ],
+    note: 'Formal attire. Ladies in long dresses, gentlemen in barong or suit. Kindly avoid wearing white.',
+  },
+  gifts:
+    'Your presence at our wedding is the greatest gift of all. But should you wish to bless us further, a little something toward our new beginning together would be deeply appreciated.',
+  hashtag: '#JuanAndMariaForever',
+  entourage: {
+    parents: {
+      groom: ['Antonio R. Rivera †', 'Corazon D. Rivera'],
+      bride: ['Eduardo M. Aguilar', 'Lourdes V. Aguilar'],
     },
-    {
-      role: 'Principal Sponsors',
-      name: 'Mr. & Mrs. Gregorio Villanueva\nMr. & Mrs. Rafael Aquino',
+    officiant: 'Rev. Fr. Manuel A. Bautista',
+    sponsors: [
+      { sir: 'Mr. Ramon T. Geronimo', madam: 'Mrs. Elena S. Geronimo' },
+      { sir: 'Hon. Alfredo P. Lim', madam: 'Mrs. Teresita R. Lim' },
+      { sir: 'Engr. Vicente C. Morales', madam: 'Mrs. Patricia L. Morales' },
+      { sir: 'Mr. Rodolfo D. Castillo', madam: 'Mrs. Yolanda B. Castillo' },
+      { sir: 'Dr. Federico A. Ngo', madam: 'Mrs. Susana M. Ngo' },
+      { sir: 'Mr. Benigno R. Salazar', madam: 'Mrs. Imelda C. Salazar' },
+      { sir: 'Atty. Manuel L. Tan', madam: 'Mrs. Rosario V. Tan' },
+      { sir: 'Mr. Gregorio S. Aquino', madam: 'Mrs. Carmela D. Aquino' },
+    ],
+    honor: {
+      matronOfHonor: 'Andrea R. Villanueva',
+      maidOfHonor: 'Sophia M. Aguilar',
+      bestMan: 'Carlo D. Rivera',
     },
-    { role: 'Maid of Honor', name: 'Andrea Santos' },
-    { role: 'Best Man', name: 'Carlo Reyes' },
-    { role: 'Bridesmaids', name: 'Liza Cruz   ·   Mae Tan   ·   Joy Lim' },
-    { role: 'Groomsmen', name: 'Paolo Diaz   ·   Rico Yu   ·   Ken Sy' },
-    { role: 'Officiating Priest', name: 'To be announced' },
-  ],
+    bridesmaids: ['Liza Cruz', 'Mae Tan', 'Joy Lim'],
+    groomsmen: ['Paolo Diaz', 'Rico Yu', 'Ken Sy'],
+  },
   story: {
     image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1200&q=75&auto=format&fit=crop',
     text: "We first met at a friend's birthday party in Manila back in 2018 — one shared playlist and a long conversation later, we knew it was the start of something. Through countless memories, spontaneous trips, and quiet everyday moments, our love only grew stronger. And under a sky full of stars in early 2026, with both our families hiding nearby, Juan asked the question — and Maria said yes. Now, we can't wait to begin forever with all of you by our side.",
@@ -122,6 +144,7 @@ export const birthdayDemo = {
   tagline: "Come join the fun at Lucas' Safari Adventure!",
   date: birthdayDate.toISOString(),
   dateLabel: formatLabel(birthdayDate),
+  heroImage: 'https://pub-c319294260ad40a7b74fdc9effbfc773.r2.dev/images/38/1777039341244-054991cb320b0031.jpeg',
   about: {
     image: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1200&q=75&auto=format&fit=crop',
     text: "Our little explorer is turning five! Lucas loves animals, dinosaurs, and big adventures — so we're throwing the wildest safari party just for him. Come celebrate five years of giggles, muddy shoes, and the biggest heart. The wild things are waiting!",
