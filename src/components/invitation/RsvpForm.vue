@@ -9,6 +9,10 @@ import { ref, computed } from 'vue'
 defineProps({
   accentClass: { type: String, default: 'text-indigo-600' },
   buttonClass: { type: String, default: 'bg-indigo-600 hover:bg-indigo-700' },
+  heading: { type: String, default: 'Will you be joining us?' },
+  subtext: { type: String, default: 'Kindly let us know if you can make it.' },
+  deadlineText: { type: String, default: '' },
+  reservedSeats: { type: Number, default: 0 },
 })
 
 const fullName = ref('')
@@ -52,10 +56,19 @@ function reset() {
 <template>
   <section class="mx-auto max-w-xl px-6">
     <h2 class="text-center text-2xl font-bold sm:text-3xl" :class="accentClass">
-      Will you be joining us?
+      {{ heading }}
     </h2>
-    <p class="mt-2 text-center text-slate-500">
-      Kindly let us know if you can make it.
+    <p class="mt-2 text-center text-slate-500">{{ subtext }}</p>
+    <p v-if="deadlineText" class="mt-1 text-center text-sm text-slate-400">
+      Please respond on or before <span class="font-medium text-slate-500">{{ deadlineText }}</span>.
+    </p>
+    <p
+      v-if="reservedSeats"
+      class="mx-auto mt-4 w-fit rounded-full border border-current/30 px-4 py-1.5 text-sm"
+      :class="accentClass"
+    >
+      We have reserved <span class="font-semibold">{{ reservedSeats }}</span>
+      seat{{ reservedSeats > 1 ? 's' : '' }} for you.
     </p>
 
     <!-- Confirmation state -->

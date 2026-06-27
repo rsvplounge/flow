@@ -21,17 +21,20 @@ function scrollTo(id) {
     <!-- Hero (full-bleed glam photo behind a plum wash) -->
     <section class="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-24 text-center">
       <img :src="d.heroImage" alt="" class="absolute inset-0 h-full w-full object-cover animate-kenburns" />
-      <div class="absolute inset-0 bg-gradient-to-b from-[#3a2336]/85 via-[#5d3a5a]/70 to-[#3a2336]/92" aria-hidden="true" />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#3a2336]/78 via-[#5d3a5a]/58 to-[#3a2336]/90" aria-hidden="true" />
 
       <div class="relative max-w-2xl text-cream">
         <p v-reveal class="font-script text-3xl text-[#f4c2c2] sm:text-4xl">it's my debut</p>
         <h1 v-reveal="100" class="mt-3 font-display text-6xl font-light tracking-tight drop-shadow-sm sm:text-8xl">
           {{ d.celebrant }}
         </h1>
-        <div v-reveal="200" class="mx-auto my-8 flex w-fit items-center gap-3 text-[#f4c2c2]" aria-hidden="true">
-          <span class="h-px w-12 bg-[#f4c2c2]/60" /><span class="text-sm">✦</span><span class="h-px w-12 bg-[#f4c2c2]/60" />
+        <p v-reveal="150" class="mt-3 text-xs font-medium uppercase tracking-[0.4em] text-[#f4c2c2] [text-shadow:0_1px_4px_rgb(0_0_0/0.4)]">
+          Eighteenth Birthday
+        </p>
+        <div v-reveal="200" class="mx-auto my-7 flex w-fit items-center gap-3 text-[#f4c2c2]" aria-hidden="true">
+          <span class="h-px w-12 bg-[#f4c2c2]/60" /><span class="font-display text-xl">18</span><span class="h-px w-12 bg-[#f4c2c2]/60" />
         </div>
-        <p v-reveal="250" class="mx-auto max-w-md text-cream/85 [text-shadow:0_1px_4px_rgb(0_0_0/0.4)]">{{ d.tagline }}</p>
+        <p v-reveal="250" class="mx-auto max-w-md text-cream/90 [text-shadow:0_1px_4px_rgb(0_0_0/0.4)]">{{ d.tagline }}</p>
         <p v-reveal="300" class="mt-4 font-display text-2xl text-[#f4c2c2]">{{ d.dateLabel }}</p>
       </div>
 

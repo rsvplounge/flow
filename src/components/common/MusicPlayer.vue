@@ -1,16 +1,33 @@
-<!-- Floating background-music toggle para sa demos. Off by default (hindi autoplay). -->
+<!-- Floating background-music toggle para sa demos. Umiikot ang button habang tumutugtog. -->
 <script setup>
-import { ref, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+// Naka-import mula src/assets — bina-bundle ni Vite (gumagana kahit sa /flow/ GitHub Pages).
+import songUrl from '@/assets/mp3/song.mp3'
 
-const props = defineProps({
-  // Filename lang sa public/audio/, hal. "demo-song.mp3"
-  src: { type: String, required: true },
+defineProps({
+  // Para sa aria-label lang; iisa ang audio file (song.mp3) sa lahat ng demo.
+  src: { type: String, default: '' },
 })
 
 const audio = ref(null)
 const playing = ref(false)
-// Tama ang path kahit naka-deploy sa /flow/ (GitHub Pages) o sa root.
-const fileUrl = `${import.meta.env.BASE_URL}audio/${props.src}`
+
+// Module-level singleton — iisang audio lang ang puwedeng tumugtog sa isang
+// pagkakataon. Pinipigilan nito ang dobleng tunog (hal. sa Vite HMR o mabilisang
+// paglipat ng page kung saan nag-overlap ang luma at bagong instance).
+let currentEl = null
+function claimPlayback(el) {
+  if (currentEl && currentEl !== el) {
+    currentEl.pause()
+  }
+  currentEl = el
+}
+
+function start(el) {
+  claimPlayback(el)
+  el.volume = 0.5
+  el.play().then(() => { playing.value = true }).catch(() => { playing.value = false })
+}
 
 function toggle() {
   const el = audio.value
@@ -19,19 +36,34 @@ function toggle() {
     el.pause()
     playing.value = false
   } else {
-    el.volume = 0.5
-    el.play().then(() => { playing.value = true }).catch(() => { playing.value = false })
+    start(el)
   }
 }
 
-onBeforeUnmount(() => {
-  if (audio.value) audio.value.pause()
+// Subukang auto-play pagkarating sa page (madalas i-block ng browser hangga't
+// walang user interaction — kaya may fallback sa manual click).
+onMounted(() => {
+  if (audio.value) start(audio.value)
 })
+
+onBeforeUnmount(() => {
+  if (audio.value) {
+    audio.value.pause()
+    if (currentEl === audio.value) currentEl = null
+  }
+})
+
+// Linisin ang stale na audio tuwing mag-hot-reload ang module sa dev.
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => {
+    if (currentEl) { currentEl.pause(); currentEl = null }
+  })
+}
 </script>
 
 <template>
   <div class="fixed bottom-5 right-5 z-50">
-    <audio ref="audio" :src="fileUrl" loop preload="none" />
+    <audio ref="audio" :src="songUrl" loop preload="auto" />
     <button
       type="button"
       @click="toggle"
@@ -44,32 +76,24 @@ onBeforeUnmount(() => {
         class="absolute inset-0 animate-ping rounded-full bg-sage/30"
         aria-hidden="true"
       />
-      <!-- Music note (paused) -->
+      <!-- Umiikot na disc + music note habang playing; tigil kapag paused -->
       <svg
-        v-if="!playing"
-        class="relative h-5 w-5"
+        class="relative h-6 w-6"
+        :class="playing ? '[animation:spin_3.5s_linear_infinite]' : ''"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.5"
+        stroke-width="1.4"
         stroke-linecap="round"
         stroke-linejoin="round"
         aria-hidden="true"
       >
-        <path d="M9 9v8.25M9 9l10.5-3v8.25M9 17.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm10.5-1.5a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-      </svg>
-      <!-- Sound bars (playing) -->
-      <svg
-        v-else
-        class="relative h-5 w-5"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        aria-hidden="true"
-      >
-        <path d="M6 10v4M10 6v12M14 8v8M18 10v4" />
+        <!-- vinyl disc -->
+        <circle cx="12" cy="12" r="9.25" />
+        <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+        <!-- music note sa loob -->
+        <path d="M10.5 9.2v4.6M10.5 9.2l4-1.1v4.6" />
+        <path d="M10.5 13.8a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0Zm4-1.1a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0Z" />
       </svg>
     </button>
   </div>

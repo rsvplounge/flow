@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 import BotanicalSprig from '@/components/common/BotanicalSprig.vue'
 import LeafDivider from '@/components/common/LeafDivider.vue'
 import { contact, mailtoInquiry } from '@/data/contact'
-import { business, stats, launchOffer, tiers } from '@/data/site'
+import { business, launchOffer, tiers } from '@/data/site'
 
 // In-page smooth scroll (hash mode-safe — hindi ginagalaw ang router hash).
 function scrollTo(id) {
@@ -155,10 +155,8 @@ const faqs = [
           <span class="font-medium text-[#e8b4ae]">We craft printed invitation cards, too.</span>
         </p>
 
-        <!-- Hooks: social proof + launch offer (slim single line) -->
-        <p v-reveal="300" class="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs tracking-wide text-cream [text-shadow:0_1px_4px_rgb(0_0_0/0.6)]">
-          <span>★ Loved by {{ stats[0].value }} celebrations</span>
-          <span class="text-cream/50" aria-hidden="true">·</span>
+        <!-- Hook: launch offer (slim single line) -->
+        <p v-reveal="300" class="mt-6 text-xs tracking-wide [text-shadow:0_1px_4px_rgb(0_0_0/0.6)]">
           <span class="font-medium text-[#e8b4ae]">❀ Launch offer — save up to ₱{{ launchOffer.saveUpTo }}</span>
         </p>
 
@@ -194,50 +192,8 @@ const faqs = [
       </button>
     </section>
 
-    <!-- ════════════ TRUST STRIP ════════════ -->
-    <section id="more" class="border-y border-sage/15 bg-blush/40">
-      <div v-reveal class="mx-auto grid max-w-4xl grid-cols-3 items-start divide-x divide-sage/20 px-2 py-8 text-center sm:gap-8 sm:px-6">
-        <div v-for="stat in stats" :key="stat.label" class="px-2">
-          <p class="font-display text-2xl text-sage-deep sm:text-3xl">{{ stat.value }}</p>
-          <p class="mt-1 text-[0.6rem] uppercase tracking-[0.12em] text-bark/60 sm:text-xs sm:tracking-[0.2em]">{{ stat.label }}</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════ SERVICES ════════════ -->
-    <section id="services" class="mx-auto max-w-6xl px-6 py-24 sm:py-28">
-      <div v-reveal class="mx-auto max-w-xl text-center">
-        <p class="font-script text-3xl text-rosedust">what we create</p>
-        <h2 class="mt-2 font-display text-4xl font-light tracking-tight text-sage-deep sm:text-5xl">
-          Everything your invitation needs
-        </h2>
-        <LeafDivider class="mx-auto mt-4 h-6 w-44 text-sage" />
-        <p class="mt-5 text-bark/75">
-          More than a pretty card — a complete, interactive experience for you and
-          your guests.
-        </p>
-      </div>
-
-      <div class="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-12 lg:grid-cols-3">
-        <article
-          v-for="(s, i) in services"
-          :key="s.title"
-          v-reveal="i * 80"
-          class="text-center sm:text-left"
-        >
-          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blush/70 text-sage-deep sm:mx-0 sm:h-14 sm:w-14">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7">
-              <path :d="s.icon" />
-            </svg>
-          </div>
-          <h3 class="mt-4 font-display text-xl font-normal text-sage-deep sm:mt-5 sm:text-2xl">{{ s.title }}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-bark/75">{{ s.desc }}</p>
-        </article>
-      </div>
-    </section>
-
     <!-- ════════════ HOW IT WORKS ════════════ -->
-    <section class="bg-blush/40">
+    <section id="more" class="bg-blush/40">
       <div class="mx-auto max-w-5xl px-6 py-24 sm:py-28">
         <div v-reveal class="mx-auto max-w-xl text-center">
           <p class="font-script text-3xl text-rosedust">how it works</p>
@@ -296,6 +252,38 @@ const faqs = [
         you tell us your vision — we design it your way
       </p>
       <LeafDivider v-reveal class="mx-auto mt-8 h-6 w-44 text-sage" />
+    </section>
+
+    <!-- ════════════ SERVICES (what we create) ════════════ -->
+    <section id="services" class="mx-auto max-w-6xl px-6 py-24 sm:py-28">
+      <div v-reveal class="mx-auto max-w-xl text-center">
+        <p class="font-script text-3xl text-rosedust">what we create</p>
+        <h2 class="mt-2 font-display text-4xl font-light tracking-tight text-sage-deep sm:text-5xl">
+          Everything your invitation needs
+        </h2>
+        <LeafDivider class="mx-auto mt-4 h-6 w-44 text-sage" />
+        <p class="mt-5 text-bark/75">
+          More than a pretty card — a complete, interactive experience for you and
+          your guests.
+        </p>
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-12 lg:grid-cols-3">
+        <article
+          v-for="(s, i) in services"
+          :key="s.title"
+          v-reveal="i * 80"
+          class="text-center sm:text-left"
+        >
+          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blush/70 text-sage-deep sm:mx-0 sm:h-14 sm:w-14">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 sm:h-7 sm:w-7">
+              <path :d="s.icon" />
+            </svg>
+          </div>
+          <h3 class="mt-4 font-display text-xl font-normal text-sage-deep sm:mt-5 sm:text-2xl">{{ s.title }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-bark/75">{{ s.desc }}</p>
+        </article>
+      </div>
     </section>
 
     <!-- ════════════ FEATURED DEMOS ════════════ -->

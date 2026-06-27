@@ -15,28 +15,13 @@ defineProps({
       {{ title }}
     </h2>
 
-    <ol class="mx-auto mt-10 w-fit space-y-6 text-left">
-      <li
-        v-for="(item, i) in items"
-        :key="i"
-        class="flex items-start gap-5"
-      >
-        <div class="flex flex-col items-center">
-          <span
-            class="h-3 w-3 flex-none rounded-full ring-4 ring-current/10"
-            :class="accentClass"
-          />
-          <span
-            v-if="i < items.length - 1"
-            class="mt-1 h-12 w-px bg-sage/25"
-            aria-hidden="true"
-          />
-        </div>
-        <div class="-mt-1">
-          <p class="text-sm font-semibold uppercase tracking-wide" :class="accentClass">{{ item.time }}</p>
-          <p class="font-display text-xl text-bark">{{ item.title }}</p>
-        </div>
-      </li>
-    </ol>
+    <div class="mx-auto mt-10 max-w-md divide-y divide-sage/15">
+      <div v-for="(item, i) in items" :key="i" class="py-5">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em]" :class="accentClass">
+          {{ item.time }}
+        </p>
+        <p class="mt-1 font-display text-xl text-bark sm:text-2xl">{{ item.title }}</p>
+      </div>
+    </div>
   </section>
 </template>

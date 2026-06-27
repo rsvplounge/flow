@@ -50,25 +50,25 @@ const pad = (n) => String(n).padStart(2, '0')
   <div class="flex justify-center">
     <div
       v-if="!remaining.done"
-      class="mx-auto grid max-w-md grid-cols-4 gap-2 sm:gap-4"
+      class="flex items-stretch divide-x divide-bark/10"
     >
       <div
         v-for="unit in units"
         :key="unit.label"
-        class="flex flex-col items-center rounded-xl bg-white/70 px-1 py-3 shadow-sm backdrop-blur sm:rounded-2xl sm:px-5 sm:py-4"
+        class="px-4 text-center sm:px-9"
       >
         <span
-          class="text-2xl font-bold tabular-nums sm:text-4xl"
+          class="block font-display text-5xl font-light leading-none tabular-nums sm:text-7xl"
           :class="accentClass"
         >
           {{ pad(unit.value) }}
         </span>
-        <span class="mt-1 text-[0.55rem] font-medium uppercase tracking-tight text-slate-500 sm:text-xs sm:tracking-wider">
+        <span class="mt-2.5 block text-[0.55rem] font-medium uppercase tracking-[0.22em] text-bark/45 sm:text-xs sm:tracking-[0.3em]">
           {{ unit.label }}
         </span>
       </div>
     </div>
-    <p v-else class="text-lg font-semibold" :class="accentClass">
+    <p v-else class="font-display text-3xl font-light" :class="accentClass">
       It's happening today!
     </p>
   </div>

@@ -8,16 +8,9 @@
 export const business = {
   name: 'Anyaya Designs',
   tagline: 'Digital Invitations & RSVP Websites',
-  // Turnaround na ginagamit sa stats at FAQ — iisa lang ang pinagmumulan.
+  // Turnaround na ginagamit sa FAQ.
   turnaround: '3 days',
 }
-
-// Trust-strip stats. Ang una ay ginagamit din sa hero social-proof line.
-export const stats = [
-  { value: '200+', label: 'celebrations made' },
-  { value: business.turnaround, label: 'average turnaround' },
-  { value: '4.9 / 5', label: 'client rating' },
-]
 
 // Launch promo — iisang halaga lang, ginagamit sa hero at sa bawat tier.
 export const launchOffer = {

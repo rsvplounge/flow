@@ -50,10 +50,10 @@ html {
 /* ── Scroll-reveal (v-reveal directive) ─────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(36px) scale(0.985);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
@@ -98,6 +98,24 @@ html {
   animation: kenburns 22s ease-in-out infinite alternate;
 }
 
+/* ── Gold shimmer text (luxe accent) ────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+.text-shimmer {
+  background: linear-gradient(100deg, #ffffff 30%, #e7c98f 50%, #ffffff 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
 /* ── Respect reduced-motion preference ──────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -109,7 +127,8 @@ html {
     transition: none;
   }
   .animate-bob,
-  .animate-kenburns {
+  .animate-kenburns,
+  .text-shimmer {
     animation: none;
   }
 }

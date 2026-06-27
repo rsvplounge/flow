@@ -78,21 +78,36 @@ function scrollTo(id) {
       </div>
     </section>
 
-    <!-- About the Birthday Star (faded photo into text) -->
-    <section class="relative">
-      <div class="relative h-[55vh] w-full overflow-hidden sm:h-[62vh]">
-        <img :src="d.about.image" alt="" class="h-full w-full object-cover object-center" />
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cream/40 to-cream" aria-hidden="true" />
-      </div>
+    <!-- About the Birthday Star (playful, pambata) -->
+    <section class="relative overflow-hidden bg-amber-50/70 px-6 py-20">
+      <!-- Confetti at playful na palamuti -->
+      <span class="pointer-events-none absolute left-[8%] top-10 h-3 w-3 rounded-full bg-rose-300" />
+      <span class="pointer-events-none absolute right-[10%] top-16 h-2.5 w-2.5 rotate-45 bg-teal-300" />
+      <span class="pointer-events-none absolute bottom-12 left-[14%] h-2.5 w-2.5 rounded-full bg-sky-300" />
+      <span class="pointer-events-none absolute bottom-16 right-[12%] h-3 w-3 rounded-full bg-amber-300" />
+      <span class="pointer-events-none absolute right-[40%] top-6 text-lg">⭐</span>
+      <span class="pointer-events-none absolute bottom-6 left-[38%] text-lg">🎈</span>
 
-      <div class="relative z-10 -mt-32 px-6 pb-16 sm:-mt-40">
-        <p v-reveal class="text-center font-script text-3xl text-amber-600">turning five 🦁</p>
-        <h2 v-reveal class="mt-1 text-center font-display text-4xl font-light text-amber-700 sm:text-5xl">
-          About the Birthday Star
-        </h2>
-        <p v-reveal class="mx-auto mt-6 max-w-xl text-center leading-loose text-bark/75 sm:text-lg">
-          {{ d.about.text }}
-        </p>
+      <div class="relative mx-auto max-w-3xl">
+        <div class="flex flex-col items-center gap-8 sm:flex-row sm:gap-12">
+          <!-- Photo sa fun na nakatagilid na frame + age badge -->
+          <div v-reveal class="relative shrink-0">
+            <div class="-rotate-3 overflow-hidden rounded-[2rem] border-[6px] border-white shadow-xl">
+              <img :src="d.about.image" alt="" class="h-60 w-60 object-cover sm:h-64 sm:w-64" />
+            </div>
+            <span class="absolute -right-3 -top-3 flex h-16 w-16 rotate-12 items-center justify-center rounded-full bg-amber-400 font-display text-3xl font-bold text-white shadow-lg ring-4 ring-amber-100">
+              5
+            </span>
+          </div>
+
+          <div v-reveal="100" class="text-center sm:text-left">
+            <p class="font-script text-3xl text-amber-600">turning five 🦁</p>
+            <h2 class="mt-1 font-display text-4xl font-light text-amber-700 sm:text-5xl">
+              About the Birthday Star
+            </h2>
+            <p class="mt-5 leading-loose text-bark/75 sm:text-lg">{{ d.about.text }}</p>
+          </div>
+        </div>
       </div>
     </section>
 

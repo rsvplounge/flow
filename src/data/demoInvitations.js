@@ -30,13 +30,27 @@ const weddingDateText = weddingDate.toLocaleDateString('en-US', {
   year: 'numeric',
 })
 
+// RSVP deadline — ~30 araw bago ang kasal (dynamic din, laging nasa hinaharap).
+const rsvpDeadline = new Date(weddingDate)
+rsvpDeadline.setDate(rsvpDeadline.getDate() - 30)
+const rsvpDeadlineText = rsvpDeadline.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+})
+
 export const weddingDemo = {
   slug: 'wedding',
   couple: 'Juan & Maria',
   tagline: 'Together with our families, we invite you to our wedding celebration',
   date: weddingDate.toISOString(),
   dateLabel: formatLabel(weddingDate),
-  heroImage: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=75&auto=format&fit=crop',
+  heroImage: 'https://images.pexels.com/photos/8243572/pexels-photo-8243572.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  cinematic: {
+    countdownBg: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80&auto=format&fit=crop',
+    quoteBg: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=80&auto=format&fit=crop',
+    quote: 'And so, the adventure begins — together, for always.',
+  },
   venue: {
     name: 'San Agustin Church',
     address: 'General Luna St, Intramuros, Manila',
@@ -48,11 +62,11 @@ export const weddingDemo = {
     mapQuery: 'The Blue Leaf Cosmopolitan Aseana Paranaque',
   },
   timeAndPlace: {
-    bgImage: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=75&auto=format&fit=crop',
+    bgImage: 'https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=1920',
     events: [
       {
         title: 'The Ceremony',
-        image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=70&auto=format&fit=crop',
+        image: 'https://images.pexels.com/photos/20233708/pexels-photo-20233708.jpeg?auto=compress&cs=tinysrgb&w=800',
         datetime: `${weddingDateText} · 3:00 PM`,
         venue: 'San Agustin Church',
         address: 'Intramuros, Manila',
@@ -60,27 +74,20 @@ export const weddingDemo = {
       },
       {
         title: 'The Reception',
-        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=70&auto=format&fit=crop',
+        image: 'https://images.pexels.com/photos/17001844/pexels-photo-17001844.jpeg?auto=compress&cs=tinysrgb&w=800',
         datetime: `${weddingDateText} · 6:30 PM`,
         venue: 'The Blue Leaf Cosmopolitan',
         address: 'Aseana Ave, Parañaque City',
         mapQuery: 'The Blue Leaf Cosmopolitan Aseana Paranaque',
       },
-      {
-        title: 'The Celebration',
-        image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=70&auto=format&fit=crop',
-        datetime: `${weddingDateText} · 8:00 PM`,
-        venue: 'Grand Ballroom',
-        address: 'The Blue Leaf Cosmopolitan',
-        mapQuery: 'The Blue Leaf Cosmopolitan Aseana Paranaque',
-      },
     ],
   },
   program: [
-    { time: '3:00 PM', title: 'Wedding Ceremony' },
-    { time: '5:30 PM', title: 'Cocktails & Photos' },
-    { time: '6:30 PM', title: 'Reception & Dinner' },
-    { time: '8:00 PM', title: 'First Dance' },
+    { time: '2:30 PM', title: 'Guest Arrival', desc: 'Kindly find your seats before the ceremony begins.', icon: '⛪' },
+    { time: '3:00 PM', title: 'Nuptial Mass', desc: 'The exchange of vows and holy matrimony.', icon: '💍' },
+    { time: '5:30 PM', title: 'Photos & Cocktails', desc: 'Drinks and photos while we capture the moments.', icon: '📸' },
+    { time: '6:30 PM', title: 'Reception & Dinner', desc: 'Dinner, toasts, and heartfelt messages.', icon: '🥂' },
+    { time: '8:00 PM', title: 'Dancing & Celebration', desc: "Let's dance the night away!", icon: '🎉' },
   ],
   dressCode: {
     theme: 'Formal · Garden Romantic',
@@ -89,11 +96,74 @@ export const weddingDemo = {
       { label: 'Blush', color: '#e7c9c2' },
       { label: 'Champagne', color: '#e8dcc0' },
     ],
+    attire: { shirt: '#e8dcc0', pants: '#3c4a36', dress: '#8c9a7d' },
     note: 'Formal attire. Ladies in long dresses, gentlemen in barong or suit. Kindly avoid wearing white.',
   },
   gifts:
     'Your presence at our wedding is the greatest gift of all. But should you wish to bless us further, a little something toward our new beginning together would be deeply appreciated.',
+  // Sample QR codes para sa monetary gifts (demo lang — dummy data ang QR).
+  giftQrs: [
+    {
+      label: 'GCash',
+      name: 'Maria A. Rivera',
+      image: 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=8&data=GCash%20Sample%20-%20Maria%20Rivera',
+    },
+    {
+      label: 'Maya',
+      name: 'Juan D. Rivera',
+      image: 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=8&data=Maya%20Sample%20-%20Juan%20Rivera',
+    },
+  ],
   hashtag: '#JuanAndMariaForever',
+  // RSVP intro wording
+  rsvp: {
+    heading: 'Be our Guest',
+    subtext: 'Let us know if you could join us on our big day.',
+    deadlineText: rsvpDeadlineText,
+    reservedSeats: 1,
+  },
+  faqs: [
+    {
+      q: 'Is RSVP required?',
+      a: `YES, please! Confirming your attendance will help us include you in our guest list. Kindly respond on or before ${rsvpDeadlineText}.`,
+    },
+    {
+      q: 'May I invite a "PLUS 1" to the event?',
+      a: 'To keep our celebration intimate, seats are reserved only for the guests named on your invitation. Thank you for understanding.',
+    },
+    {
+      q: 'What if I RSVPed but could not go?',
+      a: 'We completely understand. Please let us know as early as possible so we can adjust the arrangements.',
+    },
+    {
+      q: 'What if I did not RSVP, can I still go?',
+      a: 'Since seats and meals are prepared based on confirmed guests, we kindly ask everyone to RSVP first before the deadline.',
+    },
+    {
+      q: 'What should I wear?',
+      a: 'We would love to see you in formal attire following our Sage Green, Blush, and Champagne palette. Kindly avoid wearing white.',
+    },
+    {
+      q: 'What time should I arrive?',
+      a: 'Please arrive at least 30 minutes before the ceremony so you can be seated comfortably before it begins.',
+    },
+    {
+      q: 'What should I do once I arrive at the reception venue?',
+      a: 'Our coordinators will welcome you and guide you to your assigned table. Just relax, mingle, and enjoy!',
+    },
+    {
+      q: 'Can we bring our kids to the wedding?',
+      a: 'As much as we adore little ones, we have planned an adults-only celebration. We hope this gives you a fun night off!',
+    },
+    {
+      q: 'Am I allowed to take pictures or videos during the church ceremony?',
+      a: 'We are having an unplugged ceremony — kindly keep phones away and simply be present. Our photographers will capture everything for you.',
+    },
+    {
+      q: 'How can I help the couple have a great time during their wedding?',
+      a: 'Simply come, celebrate, and dance with us! Your love and presence are the greatest gifts we could ask for.',
+    },
+  ],
   entourage: {
     parents: {
       groom: ['Antonio R. Rivera †', 'Corazon D. Rivera'],
@@ -139,7 +209,7 @@ export const debutDemo = {
   tagline: 'You are invited to my 18th Birthday Celebration',
   date: debutDate.toISOString(),
   dateLabel: formatLabel(debutDate),
-  heroImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=75&auto=format&fit=crop',
+  heroImage: 'https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=1600&q=75&auto=format&fit=crop',
   about: {
     image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1200&q=75&auto=format&fit=crop',
     text: "Tonight, I step into womanhood surrounded by the people who shaped me. From a shy little girl into the woman I am becoming, every moment has led to this night. Thank you for being part of my story — let's celebrate eighteen beautiful years together.",
@@ -182,7 +252,7 @@ export const birthdayDemo = {
   dateLabel: formatLabel(birthdayDate),
   heroImage: 'https://pub-c319294260ad40a7b74fdc9effbfc773.r2.dev/images/38/1777039341244-054991cb320b0031.jpeg',
   about: {
-    image: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1200&q=75&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=900&q=75&auto=format&fit=crop',
     text: "Our little explorer is turning five! Lucas loves animals, dinosaurs, and big adventures — so we're throwing the wildest safari party just for him. Come celebrate five years of giggles, muddy shoes, and the biggest heart. The wild things are waiting!",
   },
   venue: {

@@ -19,13 +19,17 @@ const active = ref(null) // index ng bukas na modal
       <img :src="bgImage" alt="" class="absolute inset-0 h-full w-full object-cover" />
       <div class="absolute inset-0 bg-sage-deep/55" aria-hidden="true" />
       <div class="relative z-10 mt-20 px-6 text-center text-cream sm:mt-24">
-        <h2 class="font-display text-4xl font-light uppercase tracking-[0.15em] sm:text-5xl">Time &amp; Place</h2>
+        <p class="text-xs font-medium uppercase tracking-[0.3em] text-cream/80">Getting There</p>
+        <h2 class="mt-2 whitespace-nowrap font-display text-3xl font-light uppercase tracking-[0.12em] sm:text-5xl">Ceremony &amp; Venue</h2>
         <LeafDivider class="mx-auto mt-4 h-6 w-44 text-cream/80" />
       </div>
     </div>
 
     <!-- Overlapping cards -->
-    <div class="relative z-20 mx-auto -mt-44 grid max-w-5xl gap-6 px-6 pb-20 sm:-mt-48 sm:grid-cols-3 sm:gap-8">
+    <div
+      class="relative z-20 mx-auto -mt-44 grid gap-6 px-6 pb-20 sm:-mt-48 sm:gap-8"
+      :class="events.length === 2 ? 'max-w-3xl sm:grid-cols-2' : 'max-w-5xl sm:grid-cols-3'"
+    >
       <article
         v-for="(ev, i) in events"
         :key="i"
