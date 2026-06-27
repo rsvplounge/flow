@@ -168,7 +168,7 @@ function scrollTo(id) {
         </h2>
       </div>
 
-      <div class="mx-auto mt-10 max-w-2xl space-y-2.5">
+      <div class="mx-auto mt-10 max-w-2xl space-y-1.5">
         <details
           v-for="(f, i) in d.faqs"
           :key="i"
